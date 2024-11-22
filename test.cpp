@@ -81,4 +81,35 @@ pour instancier mon template avec le type par défaut j'utiliser la synthaxe :
 vertex<>	a(12, 15, 68);
 si je ne mets rien, le type est reconnu automatiquement,
 si je mets <>, c'est le type par défaut qui est utilisé.
+
+La specialisation :
+partielle ou complete pour une classe
+complete obligatoirement pour fonction
+
+en plus de la fonction, ou classe template principale,
+on peut rajouter une meme classe template ou l'un ou plusieurs ou tous les types
+sont specifies:
+
+ex:
+//template principal
+template<typename T, typename U>
+class List {
+private:
+	T	lhs;
+	U	rhs;
+public:
+	List<T, U>(){}
+	~List<T, U>(){}
+}
+
+//template specialise:
+template<int, typename U>
+class	List<int, U>{
+	private:
+		int	lhs;
+		U	rhs;
+	public:
+		List<int, U>(){}
+		~List<int, U>(){}
+}
 */
