@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:45:48 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/11/22 17:30:42 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:44:25 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <iostream>
 
@@ -24,10 +24,10 @@ public:
 	Array<T>() : _array(NULL), _size(0){}
 	Array<T>(unsigned int n) {
 		if (n > 0) {
-			_array = new T(n);
+			_array = new T[n];
 			_size = n;
-			for (int i = 0; i < n; ++i)
-				_array[i] = T();
+			for (unsigned int i = 0; i < n; ++i)
+				_array[i] = T();//pour initialiser à null ou 0
 		}
 		else {
 			_array = NULL;
@@ -35,26 +35,44 @@ public:
 		}
 	}
 	Array<T>(Array<T> const & src) {
-		*this = src;
+		_size = src._size;
+		if (src._size == 0)
+			_array = NULL;
+		else {
+			_array = new T[_size];
+			for (unsigned int i = 0; i < src._size; ++i) {
+				_array[i] = src._array[i];
+			}
+		}
 	}
 	Array<T> &	operator=(Array<T> const & src) {
-		if (this = &src)
+		if (this == &src)
 			return *this;
-		if (src._size == 0)
-			return *this;
-		if (_array)
+		if (_size > 0)
 			delete[] _array;
 		_size = src._size;
-		_array = new T[_size];
-		for (int i = 0; i < src._size; ++i) {
-			_array[i] = src._array[_size];
+		if (src._size == 0)
+			_array = NULL;
+		else {
+			_array = new T[_size];
+			for (unsigned int i = 0; i < src._size; ++i) {
+				_array[i] = src._array[i];
+			}
 		}
 		return *this;
 	}
-	unsigned int &	size() {
+
+	T&	operator[](unsigned int i) {
+		if (i >= _size)
+			throw IndexOutOfBoundExeption("index out of bound");
+		return (_array[i]);
+	}
+	unsigned int	size() const {
 		return _size;
 	}
-	~Array();
+
+
+	~Array() {}
 
 	class	IndexOutOfBoundExeption : public std::exception {
 		private:
@@ -67,5 +85,10 @@ public:
 		}
 	};
 };
-
+template <typename T>
+std::ostream&	operator<<(std::ostream & o, Array<T> & src) {
+	for (unsigned int i = 0; i < src.size(); ++i)
+		o << "array["<<i<<"] = "<<src[i]<<"; ";
+	return o;
+}
 #endif
