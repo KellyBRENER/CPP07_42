@@ -6,11 +6,11 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:39:26 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/11/26 15:51:32 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:37:42 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Array.hpp"
+#include "Array.tpp"
 #include <ctime>
 #include <cstdlib>
 
@@ -27,6 +27,9 @@ int	main() {
 		std::cout<<"error : "<<e.what()<<std::endl;
 	}
 	try {
+	Array<std::string>	empty_string_array;
+	std::cout<<"empty_string_array size = "<<empty_string_array.size()<<std::endl;
+
 	Array<std::string>	string_array(3);
 	string_array[0] = "bonjour";
 	string_array[1] = "monsieur";

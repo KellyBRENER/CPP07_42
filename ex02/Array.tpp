@@ -1,19 +1,19 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.hpp                                          :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:45:48 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/11/26 15:44:25 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:24:28 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include <iostream>
 
-#ifndef ARRAY_HPP
-#define ARRAY_HPP
+#ifndef ARRAY_TPP
+#define ARRAY_TPP
 
 template < typename T >
 class Array {
