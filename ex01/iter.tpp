@@ -1,19 +1,19 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   iter.tpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:53:04 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/11/22 16:00:07 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:20:46 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <iostream>
 
-#ifndef ITER_HPP
-#define ITER_HPP
+#ifndef ITER_TPP
+#define ITER_TPP
 
 template < typename T >
 void	ft_double(T & t) {
@@ -27,6 +27,12 @@ void	print_array(T & t) {
 
 template < typename T >
 void	iter(T* array, size_t	array_size, void (*f)(T&)) {
+	for (size_t i = 0; i < array_size; ++i)
+		f(array[i]);
+}
+
+template < typename T >
+void	iter(T* array, size_t	array_size, void (*f)(const T&)) {
 	for (size_t i = 0; i < array_size; ++i)
 		f(array[i]);
 }
